@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     }
 
     public void SaveGame() {
-        Player player = new Player();
+        PlayerData player = new PlayerData();
         player.position = PlayerController.gameObject.transform.position;
         string data = JsonUtility.ToJson(player);
         SaveAndLoad.Save(data);
@@ -27,12 +27,12 @@ public class GameController : MonoBehaviour
 
     public void LoadGame() {
         string content = SaveAndLoad.Load();
-        Player player = JsonUtility.FromJson<Player>(content);
+        PlayerData player = JsonUtility.FromJson<PlayerData>(content);
         PlayerController.gameObject.transform.position = player.position;
     }
 }
 
 
-public class Player {
+public class PlayerData {
     public Vector3 position;
 }
